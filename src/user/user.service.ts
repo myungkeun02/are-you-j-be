@@ -32,9 +32,9 @@ export class UserService {
         id: user.snsId,
       },
       defaults: {
-        googleId: user.data[0].id,
+        googleId: user.snsId,
         googleDisplayName: user.name,
-        email: user.data[0].email,
+        email: user.email,
         googleAccessToken: user.accessToken,
         googleRefreshToken: user.refreshToken,
       },
@@ -67,7 +67,6 @@ export class UserService {
     res.setHeader('Set-Cookie', cookie);
     res.setHeader('Authorization', `Bearer ${token}`);
     res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Origin', 'https://localhost:3000');
 
     // redirect
     res.redirect('https://localhost:3000');

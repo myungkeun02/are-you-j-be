@@ -12,7 +12,6 @@ import { StatisticsController } from './statistics/statistics.controller';
 import { StatisticsModule } from './statistics/statistics.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 
-
 @Module({
   imports: [
     RoutinesModule,
@@ -27,18 +26,12 @@ import { SequelizeModule } from '@nestjs/sequelize';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       timezone: 'Asia/Seoul',
-      models: ['/**/*.entity{.ts,.js}'],
-      autoLoadModels: true,
-      synchronize: true,
+      // models: ['/**/*.entity{.ts,.js}'],
+      // autoLoadModels: true,
+      // synchronize: true,
     }),
   ],
-  controllers: [
-    AppController,
-    RoutinesController,
-    UserController,
-    PlansController,
-    StatisticsController,
-  ],
-  providers: [AppService, UserService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -9,9 +9,9 @@ config();
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor() {
     super({
-      clientID: process.env.GOOGLE_CLIENT_KEY,
+      clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-      callbackURL: 'http://localhost:3000/user/google/callback',
+      callbackURL: 'http://localhost:3000/user/login/callback',
       scope: ['email', 'profile'],
     });
   }
@@ -22,11 +22,10 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     profile: any,
     done: VerifyCallback,
   ): Promise<any> {
-    const { name, emails, photos } = profile;
+    const { name, emails } = profile;
     const user = {
       email: emails[0].value,
       name: name.givenName,
-      picture: photos[0].value,
       accessToken,
       refreshToken,
       snsId: profile.id,
